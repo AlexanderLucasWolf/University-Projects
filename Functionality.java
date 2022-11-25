@@ -1,66 +1,65 @@
 
 public class Functionality {
+	public static int[] countingStones(String[] arr) {
+		if (arr == null) {
+			return null;
+		}
+		int[] rgb = { 0, 0, 0 };
+		for (int i = 0; i < arr.length; i++) {
+			sorting(arr[i], rgb);
+		}
 
-	public static String longestWord(String a) {
-		String longestWord = "";
-		String currentWord = "";
-		char currentLetter;
-		if (a == "") {
-			return "";
+		for (int i = 0; i < rgb.length; i++) {
+			System.out.print(rgb[i] + " ");
 		}
-		for (int i = 0; i < a.length(); i++) {
-			currentLetter = a.charAt(i);
-			if (currentLetter != ' ') {
-				currentWord += a.charAt(i);
-			} else {
-				if (currentWord.length() > longestWord.length()) {
-					longestWord = currentWord;
-				}
-				currentWord = "";
-			}
-			if (i == a.length() - 1) {
-				if (currentWord.length() > longestWord.length()) {
-					longestWord = currentWord;
-				}
-			}
+		if (rgb[0] == 0 && rgb[1] == 0 && rgb[2] == 0) {
+			return null;
 		}
-		longestWord = longestWord + " " + longestWord.length();
-		System.out.println(longestWord);
-		return longestWord;
+		return rgb;
 	}
 
-	public static int[][] decompress(int arr[]) {
-		int laenge1;
-		int laenge2;
-		if (arr.length % 2 == 0) {
-			laenge1 = arr.length / 2;
-			laenge2 = arr.length / 2;
-		} else {
-			laenge1 = (arr.length + 1) / 2;
-			laenge2 = (arr.length - 1) / 2;
+	public static int[] sorting(String input, int[] rgb) {
+		if (input.equals("r")) {
+			rgb[0] += 1;
+			return rgb;
 		}
+		if (input.equals("g")) {
+			rgb[1] += 1;
+			return rgb;
+		}
+		if (input.equals("b")) {
+			rgb[2] += 1;
+			return rgb;
+		}
+		System.out.println("No rgb");
+		return rgb;
+	}
 
-		int[][] newArr = new int[2][];
-		newArr[0] = new int[laenge1];
-		newArr[1] = new int[laenge2];
+	public static int[] arrayDiv(int[] array, int zahl) {
+		assert zahl != 0 && array != null && array.length >= 0;
+		int[] result = new int[array.length];
+		for (int i = 0; i < array.length; i++) {
+			result[i] = array[i] / zahl;
+		}
+		assert result != null && result.length >= 0 && result.length == array.length && biggerThanZero(result) == true;
+		for (int i = 0; i < result.length; i++) {
+			System.out.print(result[i] + " ");
+		}
+		return result;
+	}
 
-		for (int i = 0; i < laenge1; i++) {
-			newArr[0][i] = arr[i];
+	public static boolean biggerThanZero(int[] array) {
+		assert array != null && array.length >= 0;
+		int acc = 0;
+		for (int i = 0; i < array.length; i++) {
+			acc += array[i];
 		}
-		for (int i = 0; i < laenge2; i++) {
-			newArr[1][i] = arr[i + laenge1];
-		}
-		return newArr;
+		return acc >= 0;
 	}
 
 	public static void main(String[] args) {
-		longestWord("Universitaet Koblenz-Landau");
-		int[] arr = { 1, 2, 3, 4, 5, 6, 7 };
-		int[][] newArr = decompress(new int[] { -2, -6, 10, 98, 7 });
-		for (int i = 0; i < newArr.length; ++i) {
-			for (int j = 0; j < newArr[i].length; ++j) {
-				System.out.println(i + " " + j + " " + newArr[i][j] + " ");
-			}
-		}
+		countingStones(new String[] { "g", "g", "g", "b", "g", "g", "g", "b", "r", "g", "g", "b", "b" });
+		System.out.println(" ");
+		arrayDiv(new int[] { -8 }, 7);
 	}
 }
