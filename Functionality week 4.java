@@ -5,33 +5,30 @@ public class Functionality {
 			return null;
 		}
 		int[] rgb = { 0, 0, 0 };
-		for (int i = 0; i < arr.length; i++) {
-			sorting(arr[i], rgb);
-		}
-
-		for (int i = 0; i < rgb.length; i++) {
-			System.out.print(rgb[i] + " ");
-		}
+		int i = -1;
+		sortieren(arr, rgb, i);
 		if (rgb[0] == 0 && rgb[1] == 0 && rgb[2] == 0) {
 			return null;
 		}
 		return rgb;
 	}
 
-	public static int[] sorting(String input, int[] rgb) {
-		if (input.equals("r")) {
-			rgb[0] += 1;
-			return rgb;
+	public static int[] sortieren(String[] arr, int[] rgb, int i) {
+		i++;
+		if (i < arr.length) {
+			if (arr[i].equals("r")) {
+				rgb[0] += 1;
+				sortieren(arr, rgb, i);
+			}
+			if (arr[i].equals("g")) {
+				rgb[1] += 1;
+				sortieren(arr, rgb, i);
+			}
+			if (arr[i].equals("b")) {
+				rgb[2] += 1;
+				sortieren(arr, rgb, i);
+			}
 		}
-		if (input.equals("g")) {
-			rgb[1] += 1;
-			return rgb;
-		}
-		if (input.equals("b")) {
-			rgb[2] += 1;
-			return rgb;
-		}
-		System.out.println("No rgb");
 		return rgb;
 	}
 
@@ -60,6 +57,6 @@ public class Functionality {
 	public static void main(String[] args) {
 		countingStones(new String[] { "g", "g", "g", "b", "g", "g", "g", "b", "r", "g", "g", "b", "b" });
 		System.out.println(" ");
-		arrayDiv(new int[] { -8 }, 7);
+		arrayDiv(new int[] { 8, -70, 5 }, 7);
 	}
 }
