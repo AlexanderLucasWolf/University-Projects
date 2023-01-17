@@ -1,0 +1,93 @@
+public class Diskplayer {
+	private State state = State.INACTIVE;
+
+	public void openDrive() {
+		switch (state) {
+		case INACTIVE:
+			this.state = State.OPENDRIVE;
+			break;
+		case PLAYING:
+			boop();
+			this.state = State.OPENDRIVE;
+			break;
+		default:
+			break;
+		}
+	}
+
+	public void closeDrive() {
+		switch (state) {
+		case OPENDRIVE:
+			this.state = State.INACTIVE;
+			break;
+		default:
+			break;
+		}
+	}
+
+	public void changeSpeed() {
+		switch (state) {
+		case INACTIVE:
+			this.state = State.INACTIVE;
+			break;
+		case PLAYING:
+			bieep();
+			this.state = State.PLAYING;
+			break;
+		case MENU:
+			bieep();
+			this.state = State.MENU;
+			break;
+		default:
+			break;
+		}
+	}
+
+	public void playDisk() {
+		switch (state) {
+		case INACTIVE:
+			bieep();
+			this.state = State.MENU;
+			break;
+		case PLAYING:
+			this.state = State.PLAYING;
+			break;
+		case MENU:
+			bieep();
+			this.state = State.PLAYING;
+			break;
+		default:
+			break;
+		}
+	}
+
+	public void diskEnd() {
+		switch (state) {
+		case PLAYING:
+			bieep();
+			this.state = State.INACTIVE;
+			break;
+		default:
+			break;
+		}
+	}
+
+	private void bieep() {
+		System.out.println("Bieep !");
+
+	}
+
+	private void boop() {
+		System.out.println("Boop ?!");
+
+	}
+
+	public State getState() {
+		return state;
+	}
+
+	public void setState(State state) {
+		this.state = state;
+	}
+
+}
